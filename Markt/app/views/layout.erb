@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+  <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type='text/css'>
+  <style>
+      .todo {
+        font-family: 'Shadows Into Light', cursive;
+        right: -5px;
+        top: -20px;
+        }
+    </style>
+  <title>Do Work: A To-Do List</title> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+
+  <!-- NAV BAR -->
+
+ <nav class="navbar navbar-default navbar-static-top" style="background: #cce5ff">
+  
+
+  <div class="container">
+    <% if logged_in? %>
+     <h1><p class="text-light">MARKT</p></h1>
+   <h4>
+      <a href="/lists/new"> Create List </a> ~
+      <a href="/lists"> View Lists </a> ~
+      <a href="/logout"> Log Out </a>
+    </h4>  
+
+    <% else %>
+   
+      <div class="container">
+          
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+       <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+          
+          <title>Markt!</title>
+  
+    </div>
+    <h4>
+      
+      <a href="/signup">Sign Up</a>  
+      <a href="/login">Log In</a> 
+    </h4>
+    <%end %>
+
+  </nav>
+</div>
+<nav>
+  <div class="container">
+    <% if !@error_message.nil? %>
+    <div class="alert alert-warning">
+      <%= @error_message %>
+    </div>
+  <% end %>
+    <%= yield %>
+
+  </div>
+</nav>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
+</body>
+</html>
