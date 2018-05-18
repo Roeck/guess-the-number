@@ -1,0 +1,13 @@
+<h3>Display all the info</h3>
+
+
+<ul>
+	
+	<% @infos.each do |info| %>
+	<li>
+	<% info.name %> (<%= info.year %>)
+    </li>  
+
+    <% end %>
+
+</ul>

@@ -1,0 +1,2306 @@
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAliens (20180312231415)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "aliens" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "age" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180312231415"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-12 23:14:50.305602"], ["updated_at", "2018-03-12 23:14:50.305602"]]
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 19:15:35 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.7ms)
+Completed 200 OK in 29ms (Views: 12.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 19:15:58 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 1007ms (Views: 999.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 19:16:01 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  Rendered aliens/_form.html.erb (36.2ms)
+  Rendered aliens/new.html.erb within layouts/application (39.5ms)
+Completed 200 OK in 71ms (Views: 59.5ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/aliens" for 127.0.0.1 at 2018-03-12 19:16:46 -0400
+Processing by AliensController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"vt/DpnZN41g3AVfm5Ge+yzsmT764mVkaoY5pcO3U4KJRWSYv7c4Lq8c7vln0F2rPTUmqz3H99wLbLOkFdvshSQ==", "alien"=>{"name"=>"Hey", "age"=>"213"}, "commit"=>"Create Alien"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "aliens" ("name", "age", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Hey"], ["age", 213], ["created_at", "2018-03-12 23:16:46.809161"], ["updated_at", "2018-03-12 23:16:46.809161"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/1
+Completed 302 Found in 8ms (ActiveRecord: 2.0ms)
+
+
+Started GET "/aliens/1" for 127.0.0.1 at 2018-03-12 19:16:46 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 39ms (Views: 28.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens/1/edit" for 127.0.0.1 at 2018-03-12 19:16:50 -0400
+Processing by AliensController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering aliens/edit.html.erb within layouts/application
+  Rendered aliens/_form.html.erb (2.4ms)
+  Rendered aliens/edit.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 44ms (Views: 36.5ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/aliens/1" for 127.0.0.1 at 2018-03-12 19:16:56 -0400
+Processing by AliensController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zSVjGS5b24UAU/ageBmc9KKFWAPpe/1EmSxOP7vGNZ3bNQKaychK6IduUeNJh22I5Ss87u2XPFBt0ccjx/gycg==", "alien"=>{"name"=>"Hey", "age"=>"2133425"}, "commit"=>"Update Alien", "id"=>"1"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE "aliens" SET "age" = ?, "updated_at" = ? WHERE "aliens"."id" = ?[0m  [["age", 2133425], ["updated_at", "2018-03-12 23:16:56.150440"], ["id", 1]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/1
+Completed 302 Found in 10ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/aliens/1" for 127.0.0.1 at 2018-03-12 19:16:56 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 34ms (Views: 30.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 19:16:57 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 42ms (Views: 35.9ms | ActiveRecord: 0.3ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePlanets (20180312231823)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE TABLE "planets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180312231823"]]
+  [1m[35m (9.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 19:19:08 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 456ms (Views: 435.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 19:19:11 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  Rendered aliens/_form.html.erb (21.3ms)
+  Rendered aliens/new.html.erb within layouts/application (24.9ms)
+Completed 200 OK in 57ms (Views: 53.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 19:19:24 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 60ms (Views: 53.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 19:19:25 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (6.1ms)
+  Rendered planets/new.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 87ms (Views: 68.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 19:19:31 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"up5bjOqhCx710nvDCbgQQbnPJ0LFliHORGOF8tsvR1/cb4i0TvNWwwUM0/++ZHayrKqyiCbIn0ujegAzVg/eQw==", "planet"=>{"name"=>"Bunda"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Bunda"], ["created_at", "2018-03-12 23:19:31.312410"], ["updated_at", "2018-03-12 23:19:31.312410"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/1
+Completed 302 Found in 9ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/planets/1" for 127.0.0.1 at 2018-03-12 19:19:31 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 62ms (Views: 44.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 19:19:34 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 38ms (Views: 34.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/1" for 127.0.0.1 at 2018-03-12 19:19:38 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 39ms (Views: 33.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 19:19:40 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 47ms (Views: 40.2ms | ActiveRecord: 0.3ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreatePowers (20180312232102)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "powers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180312232102"]]
+  [1m[35m (9.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/power" for 127.0.0.1 at 2018-03-12 19:21:52 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/power"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/Power" for 127.0.0.1 at 2018-03-12 19:21:57 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/Power"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 19:22:03 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 424ms (Views: 417.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/powers/new" for 127.0.0.1 at 2018-03-12 19:22:05 -0400
+Processing by PowersController#new as HTML
+  Rendering powers/new.html.erb within layouts/application
+  Rendered powers/_form.html.erb (20.1ms)
+  Rendered powers/new.html.erb within layouts/application (23.9ms)
+Completed 200 OK in 71ms (Views: 56.2ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/powers" for 127.0.0.1 at 2018-03-12 19:22:10 -0400
+Processing by PowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"EarvTsW6mTvXZagcGFONLWC/gUitSO8243LbYmNVH+osPJeD4gxaAEpzrdHPGqPtt2zBKP1k2uM1fBSgdPnc7w==", "power"=>{"name"=>"X Ray"}, "commit"=>"Create Power"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "powers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "X Ray"], ["created_at", "2018-03-12 23:22:10.676006"], ["updated_at", "2018-03-12 23:22:10.676006"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/1
+Completed 302 Found in 10ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/powers/1" for 127.0.0.1 at 2018-03-12 19:22:10 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 62ms (Views: 44.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/powers/1/edit" for 127.0.0.1 at 2018-03-12 19:22:13 -0400
+Processing by PowersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPower Load (1.1ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering powers/edit.html.erb within layouts/application
+  Rendered powers/_form.html.erb (3.8ms)
+  Rendered powers/edit.html.erb within layouts/application (7.8ms)
+Completed 200 OK in 59ms (Views: 52.5ms | ActiveRecord: 1.1ms)
+
+
+Started PATCH "/powers/1" for 127.0.0.1 at 2018-03-12 19:22:15 -0400
+Processing by PowersController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UFchuJyV7H0R4EKj085W+aGM2Kaq0LY4c/AgRJnTreJ2+pUY4X2oJgyKjTtTvbVpjVENh4szPXMJs27oph0CXg==", "power"=>{"name"=>"X Ray"}, "commit"=>"Update Power", "id"=>"1"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/1
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/powers/1" for 127.0.0.1 at 2018-03-12 19:22:15 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 40ms (Views: 35.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 19:22:17 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 31ms (Views: 25.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers/new" for 127.0.0.1 at 2018-03-12 19:22:19 -0400
+Processing by PowersController#new as HTML
+  Rendering powers/new.html.erb within layouts/application
+  Rendered powers/_form.html.erb (1.7ms)
+  Rendered powers/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 39ms (Views: 34.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/powers" for 127.0.0.1 at 2018-03-12 19:22:25 -0400
+Processing by PowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"CTMndsjvq065PkKtPLgWe5uD5i2ekHz2oXX37v+SRf80pV+771lodSQoR2Dr8Ti7TFCmTc68SSN3ezgs6D6G+g==", "power"=>{"name"=>"Laser"}, "commit"=>"Create Power"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "powers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Laser"], ["created_at", "2018-03-12 23:22:25.065264"], ["updated_at", "2018-03-12 23:22:25.065264"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/2
+Completed 302 Found in 8ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/powers/2" for 127.0.0.1 at 2018-03-12 19:22:25 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 29ms (Views: 24.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 19:22:26 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 37ms (Views: 31.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers/new" for 127.0.0.1 at 2018-03-12 19:22:27 -0400
+Processing by PowersController#new as HTML
+  Rendering powers/new.html.erb within layouts/application
+  Rendered powers/_form.html.erb (1.7ms)
+  Rendered powers/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 42ms (Views: 37.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/powers" for 127.0.0.1 at 2018-03-12 19:22:37 -0400
+Processing by PowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IKEc0NBqJsENILYAlDwLnwfFhr7b9uDF8dbOq135yLwdN2Qd99zl+pA2s81DdSVf0BbG3ova1RAn2AFpSlULuQ==", "power"=>{"name"=>"Destroy"}, "commit"=>"Create Power"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "powers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Destroy"], ["created_at", "2018-03-12 23:22:37.635799"], ["updated_at", "2018-03-12 23:22:37.635799"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/3
+Completed 302 Found in 5ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/powers/3" for 127.0.0.1 at 2018-03-12 19:22:37 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 42ms (Views: 37.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 19:22:38 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 38ms (Views: 32.5ms | ActiveRecord: 0.4ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPlanetToAlien (20180312232833)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "aliens" ADD "planet_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_aliens_on_planet_id" ON "aliens" ("planet_id")[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180312232833"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 19:40:36 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (7.7ms)
+Completed 200 OK in 43ms (Views: 16.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 19:40:53 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.3ms)
+Completed 200 OK in 14ms (Views: 8.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 19:41:08 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (7.0ms)
+Completed 200 OK in 24ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:03:33 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.8ms)
+Completed 200 OK in 27ms (Views: 12.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:03:39 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (5.4ms)
+Completed 200 OK in 19ms (Views: 12.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:06:35 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (4.3ms)
+Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:08:57 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (3.9ms)
+Completed 200 OK in 15ms (Views: 9.4ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:11:12 -0400
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (5.3ms)
+Completed 200 OK in 26ms (Views: 14.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:11:18 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (6.8ms)
+Completed 200 OK in 17ms (Views: 11.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:11:28 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (17.3ms)
+Completed 200 OK in 304ms (Views: 284.9ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/aliens/1" for 127.0.0.1 at 2018-03-12 20:11:32 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAlien Load (0.5ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 43ms (Views: 31.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:11:33 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 40ms (Views: 36.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:11:37 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (8.6ms)
+Completed 200 OK in 44ms (Views: 37.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:11:42 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 51ms (Views: 44.9ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/powers/2" for 127.0.0.1 at 2018-03-12 20:11:46 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 44ms (Views: 36.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:11:48 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 48ms (Views: 41.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:17:06 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.1ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (16.1ms)
+Completed 200 OK in 69ms (Views: 61.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/aliens/1" for 127.0.0.1 at 2018-03-12 20:17:08 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 56ms (Views: 48.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:17:09 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.7ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 63ms (Views: 54.9ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:17:10 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.4ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered aliens/_form.html.erb (55.4ms)
+  Rendered aliens/new.html.erb within layouts/application (58.7ms)
+Completed 200 OK in 100ms (Views: 92.9ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/aliens" for 127.0.0.1 at 2018-03-12 20:17:29 -0400
+Processing by AliensController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OW9oOuE5UI789HDhA4DGRrOhlnxcf8cicLOnsLcEytfW6Y2zerq4fQzOmV4T8BJCxc5zDZUbaToKESfFLCsLPA==", "alien"=>{"planet_id"=>"1", "name"=>"New", "age"=>"32"}, "commit"=>"Create Alien"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "aliens" ("name", "age", "created_at", "updated_at", "planet_id") VALUES (?, ?, ?, ?, ?)[0m  [["name", "New"], ["age", 32], ["created_at", "2018-03-13 00:17:29.805916"], ["updated_at", "2018-03-13 00:17:29.805916"], ["planet_id", 1]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/2
+Completed 302 Found in 101ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/aliens/2" for 127.0.0.1 at 2018-03-12 20:17:29 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 32ms (Views: 28.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:17:31 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 48ms (Views: 41.3ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/aliens/1" for 127.0.0.1 at 2018-03-12 20:23:04 -0400
+Processing by AliensController#destroy as HTML
+  Parameters: {"authenticity_token"=>"8YzoUUFVj4rHolI/gzruexVFj/sZ/E1faUAuElwlewo9oEhHt1889N7a/AuqI9LpyfKTmuMg8Wsth2KLOl1q9g==", "id"=>"1"}
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "aliens" WHERE "aliens"."id" = ?[0m  [["id", 1]]
+  [1m[35m (10.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens
+Completed 302 Found in 19ms (ActiveRecord: 11.7ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:23:04 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 38ms (Views: 34.2ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/aliens/2" for 127.0.0.1 at 2018-03-12 20:23:06 -0400
+Processing by AliensController#destroy as HTML
+  Parameters: {"authenticity_token"=>"BYxks1uXIANUIr5/IiQmIlquNckPjxF0iGMmUPbcAe/JoMSlrZ2TfU1aEEsLPRqwhhkpqPVTrUDMpGrJkKQQEw==", "id"=>"2"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "aliens" WHERE "aliens"."id" = ?[0m  [["id", 2]]
+  [1m[35m (9.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens
+Completed 302 Found in 15ms (ActiveRecord: 10.8ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:23:06 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 40ms (Views: 35.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:23:09 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered aliens/_form.html.erb (4.0ms)
+  Rendered aliens/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 42ms (Views: 35.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:23:23 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered aliens/_form.html.erb (4.3ms)
+  Rendered aliens/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 39ms (Views: 35.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:23:30 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 29ms (Views: 25.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:23:32 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered aliens/_form.html.erb (3.7ms)
+  Rendered aliens/new.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 44ms (Views: 38.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:23:37 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (3.5ms)
+Completed 200 OK in 12ms (Views: 7.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:23:43 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 46ms (Views: 42.9ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/planets/1" for 127.0.0.1 at 2018-03-12 20:23:47 -0400
+Processing by PlanetsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"adJx8hYuQ+/+2MX6N1wlmgSvVfdBTk+YveMQaWderYql/tHk4CTwkeega84eRRkI2BhJlruS86z5JFzwASa8dg==", "id"=>"1"}
+  [1m[36mPlanet Load (0.6ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[31mDELETE FROM "planets" WHERE "planets"."id" = ?[0m  [["id", 1]]
+  [1m[35m (10.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets
+Completed 302 Found in 19ms (ActiveRecord: 11.9ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:23:47 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 33ms (Views: 28.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:23:48 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (4.4ms)
+  Rendered planets/new.html.erb within layouts/application (16.7ms)
+Completed 200 OK in 54ms (Views: 48.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:23:59 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jV36gMOVPSQKk6riE4i3CbZ4SYihe+JNOcP9ooitufLrrCm4Z8dg+fpNAt6kVNH6ox3cQkIlXMje2nhjBY0g7g==", "planet"=>{"name"=>"Saturn"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Saturn"], ["created_at", "2018-03-13 00:23:59.648142"], ["updated_at", "2018-03-13 00:23:59.648142"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/2
+Completed 302 Found in 9ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/planets/2" for 127.0.0.1 at 2018-03-12 20:23:59 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 34ms (Views: 29.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:24:05 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 36ms (Views: 30.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets/2/edit" for 127.0.0.1 at 2018-03-12 20:24:11 -0400
+Processing by PlanetsController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering planets/edit.html.erb within layouts/application
+  Rendered planets/_form.html.erb (1.9ms)
+  Rendered planets/edit.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 49ms (Views: 34.3ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/planets/2" for 127.0.0.1 at 2018-03-12 20:24:13 -0400
+Processing by PlanetsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0Ba9Wj/z5H+L8UvG0dFIx9XraibRgFGZK9umYzzBZi4p19cHu2PxDw11sHJY3nenDYWfT8mH2NuYzsW5EMTYtg==", "planet"=>{"name"=>"Saturn"}, "commit"=>"Update Planet", "id"=>"2"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/2
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/planets/2" for 127.0.0.1 at 2018-03-12 20:24:13 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 31ms (Views: 27.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:24:15 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 36ms (Views: 32.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:24:18 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.6ms)
+  Rendered planets/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 38ms (Views: 31.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:24:25 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"k61lvmnoo4auz6n3+0RH1tEDje4Ee40gLfXEcYA1gvr1XLaGzbr+W14RActMmCElxGYYJOclM6XK7EGwDRUb5g==", "planet"=>{"name"=>"Mars"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Mars"], ["created_at", "2018-03-13 00:24:25.619100"], ["updated_at", "2018-03-13 00:24:25.619100"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/3
+Completed 302 Found in 7ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/planets/3" for 127.0.0.1 at 2018-03-12 20:24:25 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 29ms (Views: 25.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:24:26 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 40ms (Views: 34.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:24:28 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (1.7ms)
+  Rendered planets/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 37ms (Views: 31.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:25:03 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"NOpzQrxgfiQm90Z9m7pRdtKYIWlTIiS6nZKi+WEZr1RSG6B6GDIj+dYp7kEsZjeFx/20o7B8mj96iyc47Dk2SA==", "planet"=>{"name"=>"Mercury"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Mercury"], ["created_at", "2018-03-13 00:25:03.527985"], ["updated_at", "2018-03-13 00:25:03.527985"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/4
+Completed 302 Found in 7ms (ActiveRecord: 2.2ms)
+
+
+Started GET "/planets/4" for 127.0.0.1 at 2018-03-12 20:25:03 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 25.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:04 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 40ms (Views: 33.5ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/planets/2" for 127.0.0.1 at 2018-03-12 20:25:11 -0400
+Processing by PlanetsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"cpvKO+6QIZCVKaVtu5HQNlVhUzHY1e46PXk618KIwEO+t2otGJqS7oxRC1mSiOykidZPUCIJUg55vnZOpPDRvw==", "id"=>"2"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM "planets" WHERE "planets"."id" = ?[0m  [["id", 2]]
+  [1m[35m (10.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets
+Completed 302 Found in 19ms (ActiveRecord: 11.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:11 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 38ms (Views: 33.7ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/planets/3" for 127.0.0.1 at 2018-03-12 20:25:13 -0400
+Processing by PlanetsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"3OWUwUjR3Vq/RriW+LvUXB1wRzp1YxHrGgDzonntCfUQyTTXvttuJKY+FqLRoujOwcdbW4+/rd9ex787H5UYCQ==", "id"=>"3"}
+  [1m[36mPlanet Load (0.9ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM "planets" WHERE "planets"."id" = ?[0m  [["id", 3]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets
+Completed 302 Found in 9ms (ActiveRecord: 3.1ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:13 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 41ms (Views: 37.5ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/planets/4" for 127.0.0.1 at 2018-03-12 20:25:15 -0400
+Processing by PlanetsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"w1eSNx0OZYnIQOplt7GyqFEA6qAVEMmoRTKQtcbT2/IPezIh6wTW99E4RFGeqI46jbf2we/MdZwB9dwsoKvKDg==", "id"=>"4"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "planets" WHERE "planets"."id" = ?[0m  [["id", 4]]
+  [1m[35m (8.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets
+Completed 302 Found in 16ms (ActiveRecord: 9.7ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:15 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 37ms (Views: 32.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:25:16 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.3ms)
+  Rendered planets/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 41ms (Views: 34.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:25:18 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"V2fsgz32MyRs45MThsX/j2nLtjPx1jWB/UuJxygmA1wxlj+7maRu+Zw9Oy8xGZl8fK4j+RKIiwQaUgwGpQaaQA==", "planet"=>{"name"=>"Mercury"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Mercury"], ["created_at", "2018-03-13 00:25:18.542344"], ["updated_at", "2018-03-13 00:25:18.542344"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/5
+Completed 302 Found in 6ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/planets/5" for 127.0.0.1 at 2018-03-12 20:25:18 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 36ms (Views: 31.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:19 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 36ms (Views: 31.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:25:25 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.4ms)
+  Rendered planets/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 46ms (Views: 40.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:25:30 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8J2MqX300ATN4tqJgTo3rMzEd33MGeTmwV4i2F1e1VGWbF+R2aaN2T08crU25lFf2aHity9HWmMmR6cZ0H5MTQ==", "planet"=>{"name"=>"Venus"}, "commit"=>"Create Planet"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Venus"], ["created_at", "2018-03-13 00:25:30.737897"], ["updated_at", "2018-03-13 00:25:30.737897"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/6
+Completed 302 Found in 7ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/planets/6" for 127.0.0.1 at 2018-03-12 20:25:30 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 42ms (Views: 35.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:31 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 42ms (Views: 35.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:25:33 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (1.8ms)
+  Rendered planets/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 45ms (Views: 40.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:25:36 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yXhVsGuXVuqB+b0ZydfcWvWsri+wXeuJus6pMLk81maviYaIz8ULN3EnFSV+C7qp4Mk75VMDVQxd1yzxNBxPeg==", "planet"=>{"name"=>"Earth"}, "commit"=>"Create Planet"}
+  [1m[35m (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Earth"], ["created_at", "2018-03-13 00:25:36.353225"], ["updated_at", "2018-03-13 00:25:36.353225"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/7
+Completed 302 Found in 8ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/planets/7" for 127.0.0.1 at 2018-03-12 20:25:36 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 33ms (Views: 29.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:37 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 42ms (Views: 36.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:25:43 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.5ms)
+  Rendered planets/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 40ms (Views: 33.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:25:47 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gJHSXblrgpVRdC1dcndELHsK+8UVLjP45dbogPznFWbmYAFlHTnfSKGqhWHFqyLfbm9uD/ZwjX0Cz21BcceMeg==", "planet"=>{"name"=>"Mars"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Mars"], ["created_at", "2018-03-13 00:25:47.665942"], ["updated_at", "2018-03-13 00:25:47.665942"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/8
+Completed 302 Found in 10ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/planets/8" for 127.0.0.1 at 2018-03-12 20:25:47 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 62ms (Views: 56.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:48 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 52ms (Views: 46.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:25:49 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (3.7ms)
+  Rendered planets/new.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 69ms (Views: 62.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:25:54 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"9VK8I0ddqyuJPRHzX0r1GV9fw8rc8aLgYn5KDogCr3OTo28b4w/29nnjuc/olpPqSjpWAD+vHGWFZ8/PBSI2bw==", "planet"=>{"name"=>"Jupiter"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Jupiter"], ["created_at", "2018-03-13 00:25:54.179952"], ["updated_at", "2018-03-13 00:25:54.179952"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/9
+Completed 302 Found in 6ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/planets/9" for 127.0.0.1 at 2018-03-12 20:25:54 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 29ms (Views: 24.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:25:55 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 39ms (Views: 32.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:25:56 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.5ms)
+  Rendered planets/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 43ms (Views: 36.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:26:00 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ofpmiUrXwgCaeTLJxcVL3/bEYIValkTfkF0A/FHutYjHC7Wx7oWf3WqnmvVyGS0s46H1T7nI+lp3RIU93M4slA==", "planet"=>{"name"=>"Saturn"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Saturn"], ["created_at", "2018-03-13 00:26:00.452381"], ["updated_at", "2018-03-13 00:26:00.452381"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/10
+Completed 302 Found in 8ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/planets/10" for 127.0.0.1 at 2018-03-12 20:26:00 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 27ms (Views: 22.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:26:01 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 40ms (Views: 36.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:26:02 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (1.6ms)
+  Rendered planets/new.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 42ms (Views: 35.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:26:07 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PbiMlnh4jcyla+ooNdom8+MRHlYSbw34efFp2SKko/FbSV+u3CrQEVW1QhSCBkAA9nSLnPExs32e6OwYr4Q67Q==", "planet"=>{"name"=>"Uranus"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Uranus"], ["created_at", "2018-03-13 00:26:07.777553"], ["updated_at", "2018-03-13 00:26:07.777553"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/11
+Completed 302 Found in 5ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/planets/11" for 127.0.0.1 at 2018-03-12 20:26:07 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"11"}
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 32ms (Views: 28.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:26:08 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 40ms (Views: 33.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:26:14 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.4ms)
+  Rendered planets/new.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 42ms (Views: 36.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:26:18 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"31B3tycznCN9Dlne5h5QxLTOAAOKDE7SfLQ8iU5szHa5oaSPg2HB/o3Q8eJRwjY3oauVyWlS8FebrblIw0xVag==", "planet"=>{"name"=>"Neptune"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Neptune"], ["created_at", "2018-03-13 00:26:18.813514"], ["updated_at", "2018-03-13 00:26:18.813514"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/12
+Completed 302 Found in 6ms (ActiveRecord: 1.8ms)
+
+
+Started GET "/planets/12" for 127.0.0.1 at 2018-03-12 20:26:18 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"12"}
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 12], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 35ms (Views: 30.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:26:19 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 44ms (Views: 38.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets/new" for 127.0.0.1 at 2018-03-12 20:26:20 -0400
+Processing by PlanetsController#new as HTML
+  Rendering planets/new.html.erb within layouts/application
+  Rendered planets/_form.html.erb (2.3ms)
+  Rendered planets/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 41ms (Views: 35.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/planets" for 127.0.0.1 at 2018-03-12 20:26:24 -0400
+Processing by PlanetsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XA+LnhC1V6lI8UgUZi7prIYbNHudtBzpBidEOWZd0eE6/limtOcKdLgv4CjR8o9fk36hsX7qomzhPsH4631I/Q==", "planet"=>{"name"=>"Planet Nine"}, "commit"=>"Create Planet"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "planets" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Planet Nine"], ["created_at", "2018-03-13 00:26:24.399335"], ["updated_at", "2018-03-13 00:26:24.399335"]]
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/planets/13
+Completed 302 Found in 8ms (ActiveRecord: 2.4ms)
+
+
+Started GET "/planets/13" for 127.0.0.1 at 2018-03-12 20:26:24 -0400
+Processing by PlanetsController#show as HTML
+  Parameters: {"id"=>"13"}
+  [1m[36mPlanet Load (1.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 13], ["LIMIT", 1]]
+  Rendering planets/show.html.erb within layouts/application
+  Rendered planets/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 37ms (Views: 31.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 20:26:25 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 52ms (Views: 46.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/names" for 127.0.0.1 at 2018-03-12 20:29:05 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/names"):
+  
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+puma (3.11.3) lib/puma/configuration.rb:225:in `call'
+puma (3.11.3) lib/puma/server.rb:624:in `handle_request'
+puma (3.11.3) lib/puma/server.rb:438:in `process_client'
+puma (3.11.3) lib/puma/server.rb:302:in `block in run'
+puma (3.11.3) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:29:17 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 39ms (Views: 35.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:29:19 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered aliens/_form.html.erb (4.6ms)
+  Rendered aliens/new.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 53ms (Views: 47.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/aliens" for 127.0.0.1 at 2018-03-12 20:29:34 -0400
+Processing by AliensController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jNn1/U+NLhLx8TsJNpH7bB6sfSx2Kp83ngW7ahYs5JJjXxB01A7G4QHL0rYm4S9oaMOYXb9OMS/kpzsfjQMleQ==", "alien"=>{"planet_id"=>"5", "name"=>"Eric", "age"=>"21"}, "commit"=>"Create Alien"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "aliens" ("name", "age", "created_at", "updated_at", "planet_id") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Eric"], ["age", 21], ["created_at", "2018-03-13 00:29:34.194944"], ["updated_at", "2018-03-13 00:29:34.194944"], ["planet_id", 5]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/3
+Completed 302 Found in 8ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/aliens/3" for 127.0.0.1 at 2018-03-12 20:29:34 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 35ms (Views: 29.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:29:35 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 42ms (Views: 36.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens/3" for 127.0.0.1 at 2018-03-12 20:29:50 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 43ms (Views: 36.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:29:51 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.5ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 46ms (Views: 39.7ms | ActiveRecord: 0.7ms)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAlienPowers (20180313003124)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "alien_powers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "alien_id" integer, "power_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_137d8b2312"
+FOREIGN KEY ("alien_id")
+  REFERENCES "aliens" ("id")
+, CONSTRAINT "fk_rails_6da3426b16"
+FOREIGN KEY ("power_id")
+  REFERENCES "powers" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_alien_powers_on_alien_id" ON "alien_powers" ("alien_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_alien_powers_on_alien_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_alien_powers_on_alien_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_alien_powers_on_power_id" ON "alien_powers" ("power_id")[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180313003124"]]
+  [1m[35m (9.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_alien_powers_on_power_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_alien_powers_on_power_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_alien_powers_on_alien_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_alien_powers_on_alien_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_aliens_on_planet_id' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2018-03-12 20:32:22 -0400
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/rons9n/.rvm/gems/ruby-2.3.3/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (5.9ms)
+Completed 200 OK in 39ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:32:28 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (55.9ms)
+Completed 200 OK in 363ms (Views: 347.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:45:30 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.1ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (20.2ms)
+Completed 200 OK in 129ms (Views: 99.1ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:45:33 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.4ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered aliens/_form.html.erb (249.1ms)
+  Rendered aliens/new.html.erb within layouts/application (252.0ms)
+Completed 200 OK in 308ms (Views: 300.9ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 20:45:46 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 72ms (Views: 65.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:45:48 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 71ms (Views: 62.7ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/powers/3" for 127.0.0.1 at 2018-03-12 20:45:52 -0400
+Processing by PowersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"xu+S7x5buygRRhd2FNb3ZoNIoKV/XowMOT6vYvugCgcKwzL56FEIVgg+uUI9z8v0X/+8xIWCMDh9+eP7ndgb+w==", "id"=>"3"}
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[31mDELETE FROM "powers" WHERE "powers"."id" = ?[0m  [["id", 3]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers
+Completed 302 Found in 10ms (ActiveRecord: 3.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:45:52 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 66ms (Views: 61.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers/new" for 127.0.0.1 at 2018-03-12 20:45:55 -0400
+Processing by PowersController#new as HTML
+  Rendering powers/new.html.erb within layouts/application
+  Rendered powers/_form.html.erb (3.2ms)
+  Rendered powers/new.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 54ms (Views: 46.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/powers" for 127.0.0.1 at 2018-03-12 20:46:02 -0400
+Processing by PowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"kO6dpbc4aSCwJKhZXNya+xFueDf/Qkbvel+aK11+1SmteOVokI6qGy0yrZSLlbQ7xr04V69uczqsUVXpStIWLA==", "power"=>{"name"=>"Cosmic Beam"}, "commit"=>"Create Power"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "powers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Cosmic Beam"], ["created_at", "2018-03-13 00:46:02.120010"], ["updated_at", "2018-03-13 00:46:02.120010"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/4
+Completed 302 Found in 10ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/powers/4" for 127.0.0.1 at 2018-03-12 20:46:02 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 32ms (Views: 28.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:46:03 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 36ms (Views: 30.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers/new" for 127.0.0.1 at 2018-03-12 20:46:07 -0400
+Processing by PowersController#new as HTML
+  Rendering powers/new.html.erb within layouts/application
+  Rendered powers/_form.html.erb (1.9ms)
+  Rendered powers/new.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 39ms (Views: 33.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/powers" for 127.0.0.1 at 2018-03-12 20:46:13 -0400
+Processing by PowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Q+miOKUPPwE84NGc1MjCm8ww6c/ugRxXEV+lEaSiTJl+f9r1grn8OqH21FEDgexbG+Opr76tKYLHUWrTsw6PnA==", "power"=>{"name"=>"Light Saber"}, "commit"=>"Create Power"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "powers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Light Saber"], ["created_at", "2018-03-13 00:46:13.908720"], ["updated_at", "2018-03-13 00:46:13.908720"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/5
+Completed 302 Found in 6ms (ActiveRecord: 1.7ms)
+
+
+Started GET "/powers/5" for 127.0.0.1 at 2018-03-12 20:46:13 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 37ms (Views: 32.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:46:15 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 50ms (Views: 43.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers/new" for 127.0.0.1 at 2018-03-12 20:46:18 -0400
+Processing by PowersController#new as HTML
+  Rendering powers/new.html.erb within layouts/application
+  Rendered powers/_form.html.erb (1.8ms)
+  Rendered powers/new.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 40ms (Views: 34.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/powers" for 127.0.0.1 at 2018-03-12 20:46:23 -0400
+Processing by PowersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"4p5fgqYQ2q51IqZ5x09kNfRz+xfsxpXZlZZIywlJeeHfCCdPgaYZleg0o7QQBkr1I6C7d7zqoAxDmIcJHuW65A==", "power"=>{"name"=>"Blast Cannon"}, "commit"=>"Create Power"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "powers" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Blast Cannon"], ["created_at", "2018-03-13 00:46:23.611196"], ["updated_at", "2018-03-13 00:46:23.611196"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/powers/6
+Completed 302 Found in 7ms (ActiveRecord: 2.1ms)
+
+
+Started GET "/powers/6" for 127.0.0.1 at 2018-03-12 20:46:23 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 41ms (Views: 36.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 20:46:24 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 40ms (Views: 34.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 20:46:32 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered aliens/_form.html.erb (8.0ms)
+  Rendered aliens/new.html.erb within layouts/application (11.6ms)
+Completed 200 OK in 49ms (Views: 43.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:24:35 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (35.5ms)
+Completed 200 OK in 186ms (Views: 171.0ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:24:42 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 41ms (Views: 35.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:24:42 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 40ms (Views: 35.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:24:43 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 54ms (Views: 42.5ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:24:45 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 56ms (Views: 49.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:24:45 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 51ms (Views: 44.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:24:46 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.7ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 48ms (Views: 40.1ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:24:47 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 52ms (Views: 47.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:24:52 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 49ms (Views: 42.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:24:53 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 68ms (Views: 61.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:24:54 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (1.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 49ms (Views: 40.2ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:24:55 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 62ms (Views: 53.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:24:56 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 53ms (Views: 47.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens/3" for 127.0.0.1 at 2018-03-12 21:29:46 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 43ms (Views: 34.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:29:48 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 45ms (Views: 38.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:29:49 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.5ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 77ms (Views: 70.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:29:50 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 58ms (Views: 53.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:29:51 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.6ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 72ms (Views: 63.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:29:52 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 50ms (Views: 42.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:29:53 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 46ms (Views: 40.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:32:08 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 159ms (Views: 154.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:32:14 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 49ms (Views: 44.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:32:15 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 52ms (Views: 46.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:32:15 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 44ms (Views: 37.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:32:16 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 48ms (Views: 40.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:32:16 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 50ms (Views: 43.6ms | ActiveRecord: 0.5ms)
+
+
+Started DELETE "/aliens/3" for 127.0.0.1 at 2018-03-12 21:32:19 -0400
+Processing by AliensController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hxpqpe7CN7xZ59PPFNpl3LhimGZtKXzITmG0bB8rgHtLNsqzGMiEwkCfffs9w1lOZNWEB5f1wPwKpvj1eVORhw==", "id"=>"3"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "aliens" WHERE "aliens"."id" = ?[0m  [["id", 3]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens
+Completed 302 Found in 11ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:32:19 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.7ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  Rendered aliens/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 58ms (Views: 53.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 21:32:22 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered aliens/_form.html.erb (16.2ms)
+  Rendered aliens/new.html.erb within layouts/application (19.2ms)
+Completed 200 OK in 63ms (Views: 56.8ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/aliens" for 127.0.0.1 at 2018-03-12 21:32:38 -0400
+Processing by AliensController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"guhBMLAMPlNtVx5lO7UEC7/qqcT2YLHNWPh10rULwwptbqS5K4/WoJ1t99orxdAPyYVMtT8EH9UiWvWnLiQC4Q==", "alien"=>{"planet_id"=>"5", "name"=>"Eric", "age"=>"21", "power_ids"=>["", "1", "2", "4", "5", "6"]}, "commit"=>"Create Alien"}
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" IN (1, 2, 4, 5, 6)[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "aliens" ("name", "age", "created_at", "updated_at", "planet_id") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Eric"], ["age", 21], ["created_at", "2018-03-13 01:32:38.228287"], ["updated_at", "2018-03-13 01:32:38.228287"], ["planet_id", 5]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 4], ["power_id", 1], ["created_at", "2018-03-13 01:32:38.230909"], ["updated_at", "2018-03-13 01:32:38.230909"]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 4], ["power_id", 2], ["created_at", "2018-03-13 01:32:38.232867"], ["updated_at", "2018-03-13 01:32:38.232867"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 4], ["power_id", 4], ["created_at", "2018-03-13 01:32:38.234717"], ["updated_at", "2018-03-13 01:32:38.234717"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 4], ["power_id", 5], ["created_at", "2018-03-13 01:32:38.235841"], ["updated_at", "2018-03-13 01:32:38.235841"]]
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 4], ["power_id", 6], ["created_at", "2018-03-13 01:32:38.236814"], ["updated_at", "2018-03-13 01:32:38.236814"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/4
+Completed 302 Found in 35ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/aliens/4" for 127.0.0.1 at 2018-03-12 21:32:38 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 34ms (Views: 30.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:32:43 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 42ms (Views: 36.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens/4/edit" for 127.0.0.1 at 2018-03-12 21:32:45 -0400
+Processing by AliensController#edit as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering aliens/edit.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  [1m[36mPower Load (0.1ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "powers"."id" FROM "powers" INNER JOIN "alien_powers" ON "powers"."id" = "alien_powers"."power_id" WHERE "alien_powers"."alien_id" = ?[0m  [["alien_id", 4]]
+  Rendered aliens/_form.html.erb (27.3ms)
+  Rendered aliens/edit.html.erb within layouts/application (30.7ms)
+Completed 200 OK in 77ms (Views: 70.1ms | ActiveRecord: 0.9ms)
+
+
+Started PATCH "/aliens/4" for 127.0.0.1 at 2018-03-12 21:32:51 -0400
+Processing by AliensController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"+DjmMEuGSqUoUI2X29pi0KGKl2VoQ2m1fcnTpEccLldl/2+1p7+lqJd9SRVCPO7ybde7tCWhP3S6Mj6bFNRSgA==", "alien"=>{"planet_id"=>"5", "name"=>"Eric", "age"=>"21", "power_ids"=>["", "1", "2"]}, "commit"=>"Update Alien", "id"=>"4"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" IN (1, 2)[0m
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers" INNER JOIN "alien_powers" ON "powers"."id" = "alien_powers"."power_id" WHERE "alien_powers"."alien_id" = ?[0m  [["alien_id", 4]]
+  [1m[35mSQL (0.9ms)[0m  [1m[31mDELETE FROM "alien_powers" WHERE "alien_powers"."alien_id" = ? AND "alien_powers"."power_id" IN (4, 5, 6)[0m  [["alien_id", 4]]
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (9.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/4
+Completed 302 Found in 26ms (ActiveRecord: 11.1ms)
+
+
+Started GET "/aliens/4" for 127.0.0.1 at 2018-03-12 21:32:51 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 43ms (Views: 38.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:32:53 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 49ms (Views: 43.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 21:32:57 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  [1m[36mPower Load (0.5ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered aliens/_form.html.erb (10.4ms)
+  Rendered aliens/new.html.erb within layouts/application (13.0ms)
+Completed 200 OK in 56ms (Views: 50.1ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/aliens" for 127.0.0.1 at 2018-03-12 21:33:04 -0400
+Processing by AliensController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"pcQOenhpL6U10hk4xhiEm+vUaFLJEw6cZoGxF3riXkFKQuvz4+rHVsXo8IfWaFCfnbuNIwB3oIQcIzFi4c2fqg==", "alien"=>{"planet_id"=>"5", "name"=>"Hey", "age"=>"54", "power_ids"=>["", "1"]}, "commit"=>"Create Alien"}
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "aliens" ("name", "age", "created_at", "updated_at", "planet_id") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Hey"], ["age", 54], ["created_at", "2018-03-13 01:33:04.474864"], ["updated_at", "2018-03-13 01:33:04.474864"], ["planet_id", 5]]
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 5], ["power_id", 1], ["created_at", "2018-03-13 01:33:04.476815"], ["updated_at", "2018-03-13 01:33:04.476815"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/5
+Completed 302 Found in 15ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/aliens/5" for 127.0.0.1 at 2018-03-12 21:33:04 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 45ms (Views: 39.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:33:06 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 44ms (Views: 37.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers/2" for 127.0.0.1 at 2018-03-12 21:33:13 -0400
+Processing by PowersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT  "powers".* FROM "powers" WHERE "powers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering powers/show.html.erb within layouts/application
+  Rendered powers/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 45ms (Views: 37.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:33:15 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 49ms (Views: 42.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:21 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (9.3ms)
+Completed 200 OK in 177ms (Views: 172.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:26 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 45ms (Views: 41.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:26 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 50ms (Views: 44.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:36:28 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 41ms (Views: 34.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:32 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.4ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 47ms (Views: 42.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:34 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.5ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 44ms (Views: 37.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:34 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 43ms (Views: 35.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:36:35 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 40ms (Views: 34.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:37 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.4ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 44ms (Views: 37.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:37 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 45ms (Views: 37.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:38 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 43ms (Views: 36.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:41 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 46ms (Views: 39.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/aliens/new" for 127.0.0.1 at 2018-03-12 21:36:42 -0400
+Processing by AliensController#new as HTML
+  Rendering aliens/new.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered aliens/_form.html.erb (6.3ms)
+  Rendered aliens/new.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 42ms (Views: 35.9ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/aliens" for 127.0.0.1 at 2018-03-12 21:36:50 -0400
+Processing by AliensController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3k20n5bblPSXMnX0fEHDAmikR2HZUEyVOkjhUYP5yuoxy1EWDVh8B2cInEtsMRcGHsuiEBA04o1A6mEkGNYLAQ==", "alien"=>{"planet_id"=>"5", "name"=>"Joenn", "age"=>"75", "power_ids"=>["", "1"]}, "commit"=>"Create Alien"}
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers" WHERE "powers"."id" = 1[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "aliens" ("name", "age", "created_at", "updated_at", "planet_id") VALUES (?, ?, ?, ?, ?)[0m  [["name", "Joenn"], ["age", 75], ["created_at", "2018-03-13 01:36:50.787953"], ["updated_at", "2018-03-13 01:36:50.787953"], ["planet_id", 5]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "alien_powers" ("alien_id", "power_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["alien_id", 6], ["power_id", 1], ["created_at", "2018-03-13 01:36:50.791067"], ["updated_at", "2018-03-13 01:36:50.791067"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/aliens/6
+Completed 302 Found in 15ms (ActiveRecord: 3.8ms)
+
+
+Started GET "/aliens/6" for 127.0.0.1 at 2018-03-12 21:36:50 -0400
+Processing by AliensController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT  "aliens".* FROM "aliens" WHERE "aliens"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering aliens/show.html.erb within layouts/application
+  Rendered aliens/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 44ms (Views: 39.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:52 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 46ms (Views: 40.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:55 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 50ms (Views: 44.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:36:56 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 57ms (Views: 50.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:36:57 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.5ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 45ms (Views: 40.7ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:36:57 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.4ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 57ms (Views: 51.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:38:20 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 252ms (Views: 248.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:38:25 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 49ms (Views: 42.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:38:26 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (7.9ms)
+Completed 200 OK in 58ms (Views: 51.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:38:26 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 55ms (Views: 48.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:39:04 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.2ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 148ms (Views: 144.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:39:06 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 42ms (Views: 35.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:39:06 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 51ms (Views: 43.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-12 21:39:07 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.2ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (2.6ms)
+Completed 200 OK in 42ms (Views: 35.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-12 21:39:08 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 52ms (Views: 46.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-12 21:39:09 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 50ms (Views: 42.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-13 01:11:57 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (6.7ms)
+Completed 200 OK in 73ms (Views: 69.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-13 01:12:02 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 42ms (Views: 36.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-13 01:12:03 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.4ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.2ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (11.1ms)
+Completed 200 OK in 61ms (Views: 56.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/powers" for 127.0.0.1 at 2018-03-13 01:12:04 -0400
+Processing by PowersController#index as HTML
+  Rendering powers/index.html.erb within layouts/application
+  [1m[36mPower Load (0.3ms)[0m  [1m[34mSELECT "powers".* FROM "powers"[0m
+  Rendered powers/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 327ms (Views: 321.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/planets" for 127.0.0.1 at 2018-03-13 01:12:05 -0400
+Processing by PlanetsController#index as HTML
+  Rendering planets/index.html.erb within layouts/application
+  [1m[36mPlanet Load (0.3ms)[0m  [1m[34mSELECT "planets".* FROM "planets"[0m
+  Rendered planets/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 53ms (Views: 48.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/aliens" for 127.0.0.1 at 2018-03-13 01:12:05 -0400
+Processing by AliensController#index as HTML
+  Rendering aliens/index.html.erb within layouts/application
+  [1m[36mAlien Load (0.3ms)[0m  [1m[34mSELECT "aliens".* FROM "aliens"[0m
+  [1m[36mPlanet Load (0.1ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Planet Load (0.0ms)[0m  [1m[34mSELECT  "planets".* FROM "planets" WHERE "planets"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered aliens/index.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 46ms (Views: 39.6ms | ActiveRecord: 0.5ms)
+
+

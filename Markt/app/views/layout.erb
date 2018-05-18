@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+      <html>
+        <title>W3.CSS Template</title>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+          <body>
+
+          <div class="w3-top">
+            <div class="w3-bar w3-white w3-wide w3-padding w3-card">
+              <a href="#home" class="w3-bar-item w3-button"><b>MA</b>rkt!</a>
+              
+              <div class="w3-right w3-hide-small">
+                <a href="/signup" class="btn btn-primary">Sign Up</a> 
+                <a href="/login" class="btn btn-primary">Log In</a> 
+                <a href="#projects" class="w3-bar-item w3-button">Projects</a>
+                <a href="#about" class="w3-bar-item w3-button">About</a>
+                <a href="#contact" class="w3-bar-item w3-button">Contact</a>
+              </div>
+            </div>
+          </div>  
+
+  <!-- NAV BAR -->
+
+  
+
+  <div class="container">
+    <% if logged_in? %>
+   <h4>
+      <a href="/lists/new"> Create List </a> ~
+      <a href="/lists"> View Lists </a> ~
+      <a href="/logout"> Log Out </a>
+    </h4>  
+
+    <% else %>
+   
+      <div class="container">
+          
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+       <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+          
+  
+    </div>
+    
+    <h4>
+      <a href="/signup">Sign Up</a>  
+      <a href="/login">Log In</a> 
+    </h4>
+    
+    <%end %>
+
+  </nav>
+</div>
+<nav>
+  <div class="container">
+    <% if !@error_message.nil? %>
+    <div class="alert alert-warning">
+      <%= @error_message %>
+    </div>
+  <% end %>
+    <%= yield %>
+
+  </div>
+</nav>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>  
+</body>
+</html>
