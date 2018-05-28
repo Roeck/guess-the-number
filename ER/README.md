@@ -1,9 +1,5 @@
-Exceptional Realty Group Website
+Real Estate Agency Website
 ---
 # Description
 
-This is an example site build from scratch using HTML and CSS.
-
-# Contact
-
-email: rons9n@gmail.com
+This is an example site built from scratch using HTML and CSS.
