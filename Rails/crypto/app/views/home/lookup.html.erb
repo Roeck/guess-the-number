@@ -1,25 +1,25 @@
 <center>
-<h3>Crypto Currency Lookup</h3>
-<br/>
+    <h3>Crypto Currency Lookup</h3>
+    <br/>
 
-<%= form_tag home_lookup_path, :method => 'POST' do %>
-  <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol...', size: 50 %>
-  <br/>
-  <br/>
-  <%= submit_tag 'Lookup Stock Quote', class: "btn btn-default" %>
-<% end %>
+      <div class="jumbotron">
 
-<br/><br/>
-
-
-
-<% if @symbol %>
-    <% for x in @lookup_coin %>
-        <% if @symbol == x["symbol"] %>
-            <%= x["name"] %>: $<%= x["price_usd"] %><br/>
-            Rank: <%= x["rank"] %><br/><br/>
+        <%= form_tag home_lookup_path, :method => 'POST' do %>
+          <%= text_field_tag 'sym', nil, placeholder: 'Enter Crypto Symbol...', size: 50 %>
+          <br/>
+          <br/>
+          <%= submit_tag 'Lookup Stock Quote', class: "btn btn-default" %>
         <% end %>
-    <% end %>
-<% end %>
+
+
+        <% if @symbol %>
+          <% for x in @lookup_coin %>
+              <% if @symbol == x["symbol"] %>
+                  <%= x["name"] %>: $<%= x["price_usd"] %><br/>
+                  Rank: <%= x["rank"] %><br/><br/>
+              <% end %>
+          <% end %>
+        <% end %>
+      </div>
 </center>
 
